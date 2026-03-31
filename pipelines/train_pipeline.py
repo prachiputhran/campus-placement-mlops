@@ -7,6 +7,7 @@ def run_pipeline():
 
     data_path = "data/raw/data.csv"
 
+    # ✅ Handle missing dataset in CI
     if not os.path.exists(data_path):
         print("Dataset not found. Skipping training.")
         return
