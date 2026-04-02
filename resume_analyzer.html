@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>PlaceAI Resume Analyzer</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div class="container">
+
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+      width="70"
+      style="margin-bottom: 10px;"
+    />
+
+    <h1>📄 PlaceAI Resume Analyzer</h1>
+
+    <div class="card">
+      <p style="opacity: 0.7;">Upload your resume (PDF)</p>
+      <input type="file" id="resume" accept="application/pdf">
+      <br>
+      <button onclick="analyzeResume()">Analyze</button>
+    </div>
+
+    <div id="result"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

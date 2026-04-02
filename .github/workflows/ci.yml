@@ -1,20 +1,25 @@
-name: CI Pipeline
+name: PlaceAI CI
 
-on:
-  push:
-    branches: [ main ]
+on: [push]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-    - run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-    - run: python -m pipelines.train_pipeline
+      - name: Check model loads
+        run: python -c "import joblib; m=joblib.load('models/model.pkl'); print('Model OK:', type(m).__name__)"
+
+      - name: Start server and test health
+        run: |
+          uvicorn api.app:app --host 0.0.0.0 --port 8000 &
+          sleep 3
+          curl -f http://localhost:8000/health
